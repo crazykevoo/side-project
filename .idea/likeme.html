@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>why me </title>
+<style>
+    body {
+        margin: 0;
+        font-family: 'Segoe UI', sans-serif;
+        background: linear-gradient(135deg, #ff9a9e, #fad0c4);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        overflow: hidden;
+    }
+
+    .container {
+        background: white;
+        padding: 40px 60px;
+        border-radius: 20px;
+        text-align: center;
+        box-shadow: 0 20px 40px rgba(0,0,0,0.2);
+        animation: popIn 0.8s ease;
+    }
+
+    h1 {
+        margin-bottom: 30px;
+        color: #ff5f7e;
+    }
+
+    button {
+        padding: 12px 30px;
+        font-size: 18px;
+        border: none;
+        border-radius: 30px;
+        cursor: pointer;
+        margin: 10px;
+        transition: transform 0.2s, box-shadow 0.2s;
+    }
+
+    button:hover {
+        transform: scale(1.1);
+        box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+    }
+
+    .yes {
+        background: #ff5f7e;
+        color: white;
+    }
+
+    .no {
+        background: #ddd;
+        color: #333;
+    }
+
+    .love {
+        font-size: 24px;
+        color: #ff5f7e;
+        animation: float 2s infinite ease-in-out;
+    }
+
+    .hearts {
+        position: absolute;
+        font-size: 30px;
+        animation: rise 3s infinite ease-in;
+        opacity: 0.7;
+    }
+
+    @keyframes popIn {
+        from {
+            transform: scale(0.5);
+            opacity: 0;
+        }
+        to {
+            transform: scale(1);
+            opacity: 1;
+        }
+    }
+
+    @keyframes float {
+        0%, 100% { transform: translateY(0); }
+        50% { transform: translateY(-15px); }
+    }
+
+    @keyframes rise {
+        from {
+            transform: translateY(0);
+            opacity: 1;
+        }
+        to {
+            transform: translateY(-200px);
+            opacity: 0;
+        }
+    }
+</style>
+</head>
+<body>
+
+<div class="container" id="app">
+    <h1>Do you have a valentines? 💕</h1>
+    <button class="yes" onclick="showLove()">Yes</button>
+    <button class="no" onclick="areYouSure()">No</button>
+</div>
+
+<script>
+function areYouSure() {
+    const app = document.getElementById("app");
+    app.innerHTML = `
+        <h1>Are you sure? 🥺</h1>
+        <button class="yes" onclick="showLove()">Yes</button>
+    `;
+}
+
+function showLove() {
+    const app = document.getElementById("app");
+    app.innerHTML = `
+        <div class="love">
+            I knew it 💖<br><br>
+            You can't miss out couldnt you  ✨<br>
+            Good luck on that day and make memories 💕
+        </div>
+    `;
+    createHearts();
+}
+
+function createHearts() {
+    setInterval(() => {
+        const heart = document.createElement("div");
+        heart.className = "hearts";
+        heart.innerHTML = "💖";
+        heart.style.left = Math.random() * 100 + "vw";
+        heart.style.bottom = "0px";
+        document.body.appendChild(heart);
+
+        setTimeout(() => {
+            heart.remove();
+        }, 3000);
+    }, 300);
+}
+</script>
+
+</body>
+</html>
